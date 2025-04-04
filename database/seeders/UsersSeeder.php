@@ -16,7 +16,7 @@ class UsersSeeder extends Seeder
      */
     public function run(): void
     {
-        for($i = 0; $i < 5; $i++) {
+        for($i = 0; $i < 10; $i++) {
 
             $response = Http::withOptions([
                 'verify' => 'C:\OSPanel\domains\laravel-sup\SUP\database\seeders\cacert.pem',
@@ -34,7 +34,10 @@ class UsersSeeder extends Seeder
                     "email" => $user['email'],
                     "password" => bcrypt(Str::random(12)),
                     "avatar" => $user['picture']['large'],
-                    "salary" => rand(20000 * 100, 100000 * 100) / 100
+                    "salary" => rand(20000 * 100, 100000 * 100) / 100,
+                    "slug" => Str::slug($user['name']['first'] . " " . $user['name']['last'])
+
+
                 ]);
             }
         }
