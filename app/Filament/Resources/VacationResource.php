@@ -31,12 +31,12 @@ class VacationResource extends Resource
                 //
                 Select::make('personal_id')->options(
                     User::all()->pluck('name', 'id')
-                )->required(),
+                )->required()->label('Personal'),
                 Select::make('vacation_type_id')
                     ->options(VacationType::all()->pluck('name', 'id'))
-                    ->required(),
-                DateTimePicker::make('start_at')->required(),
-                DateTimePicker::make('deadline')->required(),
+                    ->required()->label('Vacation Type'),
+                DateTimePicker::make('start_at')->required()->label('Start Date'),
+                DateTimePicker::make('deadline')->required()->label('Deadline'),
             ]);
     }
 
@@ -46,7 +46,7 @@ class VacationResource extends Resource
             ->columns([
                 //
                 TextColumn::make('personal.name')->label('Personal')->searchable()->sortable(),
-                TextColumn::make('type.name')->label('Vacation Type')->searchable()->sortable(),
+                TextColumn::make('vacationType.name')->label('Vacation Type')->searchable()->sortable(),
                 TextColumn::make('start_at')->label('Start Date')->sortable(),
                 TextColumn::make('deadline')->label('End Date')->sortable(),
             ])

@@ -18,7 +18,7 @@ class Vacation extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function type(): BelongsTo
+    public function vacationType(): BelongsTo
     {
         return $this->belongsTo(VacationType::class);
     }
