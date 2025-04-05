@@ -6,9 +6,13 @@ use App\Filament\Resources\ClientResource\Pages;
 use App\Filament\Resources\ClientResource\RelationManagers;
 use App\Models\Client;
 use Filament\Forms;
+use Filament\Forms\Components\FileUpload;
+use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
+use Filament\Tables\Columns\ImageColumn;
+use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
@@ -24,6 +28,15 @@ class ClientResource extends Resource
         return $form
             ->schema([
                 //
+                TextInput::make('name')->required(),
+                TextInput::make('phone')->required(),
+                TextInput::make('email')->required(),
+                TextInput::make('address')->required(),
+
+                FileUpload::make('logo')
+                ->disk('public')
+                ->directory('clients_logos')
+                ->nullable(),
             ]);
     }
 
@@ -32,6 +45,13 @@ class ClientResource extends Resource
         return $table
             ->columns([
                 //
+                TextColumn::make('name')->label('Name')->searchable()->sortable(),
+                TextColumn::make('phone')->label('Phone')->searchable(),
+                TextColumn::make('email')->label('Email')->searchable(),
+                TextColumn::make('address')->label('Address')->searchable(),
+                ImageColumn::make('logo')->disk('public')
+                    ->width(100)
+                    ->height(100)->label('Logo'),
             ])
             ->filters([
                 //

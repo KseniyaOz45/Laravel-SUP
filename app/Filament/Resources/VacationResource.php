@@ -4,11 +4,16 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\VacationResource\Pages;
 use App\Filament\Resources\VacationResource\RelationManagers;
+use App\Models\User;
 use App\Models\Vacation;
+use App\Models\VacationType;
 use Filament\Forms;
+use Filament\Forms\Components\DateTimePicker;
+use Filament\Forms\Components\Select;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
+use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
@@ -24,6 +29,14 @@ class VacationResource extends Resource
         return $form
             ->schema([
                 //
+                Select::make('personal_id')->options(
+                    User::all()->pluck('name', 'id')
+                )->required(),
+                Select::make('vacation_type_id')
+                    ->options(VacationType::all()->pluck('name', 'id'))
+                    ->required(),
+                DateTimePicker::make('start_at')->required(),
+                DateTimePicker::make('deadline')->required(),
             ]);
     }
 
@@ -32,6 +45,10 @@ class VacationResource extends Resource
         return $table
             ->columns([
                 //
+                TextColumn::make('personal.name')->label('Personal')->searchable()->sortable(),
+                TextColumn::make('type.name')->label('Vacation Type')->searchable()->sortable(),
+                TextColumn::make('start_at')->label('Start Date')->sortable(),
+                TextColumn::make('deadline')->label('End Date')->sortable(),
             ])
             ->filters([
                 //

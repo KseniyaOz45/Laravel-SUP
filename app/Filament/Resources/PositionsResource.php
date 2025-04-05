@@ -4,18 +4,20 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\PositionsResource\Pages;
 use App\Filament\Resources\PositionsResource\RelationManagers;
-use App\Models\Positions;
+use App\Models\Position;
 use Filament\Forms;
+use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
+use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 
 class PositionsResource extends Resource
 {
-    protected static ?string $model = Positions::class;
+    protected static ?string $model = Position::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
@@ -24,6 +26,7 @@ class PositionsResource extends Resource
         return $form
             ->schema([
                 //
+                TextInput::make('name')->required(),
             ]);
     }
 
@@ -32,6 +35,7 @@ class PositionsResource extends Resource
         return $table
             ->columns([
                 //
+                TextColumn::make('name')->label('Name')->searchable()->sortable(),
             ])
             ->filters([
                 //

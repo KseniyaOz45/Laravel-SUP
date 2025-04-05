@@ -6,9 +6,11 @@ use App\Filament\Resources\InventoryTypeResource\Pages;
 use App\Filament\Resources\InventoryTypeResource\RelationManagers;
 use App\Models\InventoryType;
 use Filament\Forms;
+use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
+use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
@@ -24,6 +26,7 @@ class InventoryTypeResource extends Resource
         return $form
             ->schema([
                 //
+                TextInput::make('name')->required(),
             ]);
     }
 
@@ -32,6 +35,7 @@ class InventoryTypeResource extends Resource
         return $table
             ->columns([
                 //
+                TextColumn::make('name')->label('Name')->searchable()->sortable(),
             ])
             ->filters([
                 //
