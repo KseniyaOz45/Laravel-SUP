@@ -43,19 +43,19 @@ class Order extends Model
         static::creating(function ($model) {
             $inventory = $model->inventory()->first(); // Загружаем товар
             if ($inventory) {
-                $model->sum = $this->calculateSum($model->quantity, $inventory->price);
+                $model->sum = $model->calculateSum($model->quantity, $inventory->price);
             }
         });
 
         static::updating(function ($model) {
             $inventory = $model->inventory()->first();
             if ($inventory) {
-                $model->sum = $this->calculateSum($model->quantity, $inventory->price);
+                $model->sum = $model->calculateSum($model->quantity, $inventory->price);
             }
         });
     }
 
-    private function calculateSum($quantity, $price): float
+    public function calculateSum($quantity, $price): float
     {
         return $quantity * $price;
     }
