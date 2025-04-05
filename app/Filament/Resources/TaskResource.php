@@ -36,10 +36,10 @@ class TaskResource extends Resource
 
                 Select::make('personal_id')->options(
                     User::all()->pluck('name','id')
-                )->required(),
+                )->required()->label('Personal'),
                 Select::make('status_id')->options(
                     TaskStatus::all()->pluck('name','id')
-                )->required(),
+                )->required()->label('Status'),
 
                 DateTimePicker::make('start_at')->required(),
                 DateTimePicker::make('deadline')->required(),
