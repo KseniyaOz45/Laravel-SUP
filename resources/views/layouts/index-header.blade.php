@@ -14,7 +14,7 @@
                 <li class="nav-item"><a class="nav-link" href="#" style="font-family: 'Arsenal SC', sans-serif;">Contact Us</a></li>
                 <li class="nav-item"><a class="nav-link" href="#" style="font-family: 'Arsenal SC', sans-serif;">Admin Panel</a></li>
                 <li class="nav-item"></li>
-            </ul><a class="btn btn-primary" role="button" style="font-family: 'Arsenal SC', sans-serif;">Log In</a>
+            </ul><a href="{{ route('login') }}" class="btn btn-primary" role="button" style="font-family: 'Arsenal SC', sans-serif;">Log In</a>
         </div>
     </div>
 </nav>
