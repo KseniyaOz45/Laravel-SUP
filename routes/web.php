@@ -1,10 +1,12 @@
 <?php
 
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\PersonalMenuController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [HomeController::class, 'index'])->name('index');
+Route::get('/my-orders', [PersonalMenuController::class, 'ordersMenu'])->name('ordersMenu');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
