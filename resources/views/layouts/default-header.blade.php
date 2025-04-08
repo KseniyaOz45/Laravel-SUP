@@ -9,13 +9,19 @@
                     </svg><span style="font-family: 'Arsenal SC', sans-serif;font-weight: bold;">{{ $orders_count }}</span></span></div><button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-1"><span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
         <div class="collapse navbar-collapse" id="navcol-1">
             <ul class="navbar-nav me-auto">
-                <li class="nav-item"><a class="nav-link active" href="#" style="font-family: 'Arsenal SC', sans-serif;">My orders</a></li>
+                <li class="nav-item"><a class="nav-link active" href="{{ route('ordersMenu') }}" style="font-family: 'Arsenal SC', sans-serif;">My orders</a></li>
                 <li class="nav-item"><a class="nav-link" href="#" style="font-family: 'Arsenal SC', sans-serif;">My tasks</a></li>
                 <li class="nav-item"><a class="nav-link" href="#" style="font-family: 'Arsenal SC', sans-serif;">Inventories catalog</a></li>
                 <li class="nav-item"><a class="nav-link" href="#" style="font-family: 'Arsenal SC', sans-serif;">Clients catalog</a></li>
-            </ul><a class="btn btn-primary" role="button" style="font-family: 'Arsenal SC', sans-serif;"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" class="bi bi-door-open-fill">
+            </ul>
+            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                @csrf
+            </form>
+            <a href="#" class="btn btn-primary" role="button" style="font-family: 'Arsenal SC', sans-serif;" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" class="bi bi-door-open-fill">
                     <path d="M1.5 15a.5.5 0 0 0 0 1h13a.5.5 0 0 0 0-1H13V2.5A1.5 1.5 0 0 0 11.5 1H11V.5a.5.5 0 0 0-.57-.495l-7 1A.5.5 0 0 0 3 1.5V15zM11 2h.5a.5.5 0 0 1 .5.5V15h-1zm-2.5 8c-.276 0-.5-.448-.5-1s.224-1 .5-1 .5.448.5 1-.224 1-.5 1"></path>
-                </svg></a>
+                </svg>
+            </a>
         </div>
     </div>
 </nav>
