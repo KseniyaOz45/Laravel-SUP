@@ -16,8 +16,6 @@
                             <thead>
                             <tr>
                                 <th>Id</th>
-                                <th>Client</th>
-                                <th>Inventory</th>
                                 <th>Quantity</th>
                                 <th>Sum</th>
                                 <th>Status</th>
@@ -29,9 +27,11 @@
                             <tbody>
                                 @foreach($user_orders as $order)
                                     <tr>
-                                        <td class="text-truncate text-break" style="max-width: 120px;">{{ $order->batch_number }}</td>
-                                        <td class="text-truncate text-break" style="max-width: 120px;">{{ $order->client->name }}</td>
-                                        <td class="text-truncate text-break" style="max-width: 120px;">{{ $order->inventory->name }}</td>
+                                        <td class="text-truncate text-break" style="max-width: 120px;">
+                                            <a href="{{ route('order', $order->batch_number) }}">
+                                                {{ $order->batch_number }}
+                                            </a>
+                                        </td>
                                         <td class="text-truncate text-break" style="max-width: 120px;">{{ $order->quantity }}</td>
                                         <td class="text-truncate text-break" style="max-width: 120px;">{{ $order->sum }}</td>
                                         <td class="text-truncate text-break" style="max-width: 120px;">{{ $order->status->name }}</td>

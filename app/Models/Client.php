@@ -12,7 +12,7 @@ class Client extends Model
     //
     use HasFactory;
     protected $table = 'clients';
-    protected $fillable = ['name', 'email', 'phone', 'address'];
+    protected $fillable = ['name', 'email', 'phone', 'address', 'logo'];
 
     public function orders(): HasMany
     {
