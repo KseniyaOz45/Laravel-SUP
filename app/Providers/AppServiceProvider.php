@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Models\Order;
+use App\Models\OrderStatus;
 use App\Models\Task;
 use App\Models\TaskStatus;
 use Illuminate\Support\ServiceProvider;
@@ -34,13 +35,15 @@ class AppServiceProvider extends ServiceProvider
         View::composer('layouts.default-header', function ($view) {
             $current_user = auth()->user();
             $in_process_status = TaskStatus::where('name', 'In Process')->first()->id;
+            $accepted_status = OrderStatus::where('name', 'Accepted')->first()->id;
 
             $tasks_count =
                 Task::where('personal_id', $current_user->id)
                     ->where('status_id', $in_process_status)->get()->count();
             $orders_count =
                 Order::where('personal_id', $current_user->id)
-                    ->where('status_id', $in_process_status)->get()->count();
+                    ->where('status_id', $in_process_status)
+                    ->orWhere('status_id', $accepted_status)->get()->count();
 
             $view->with([
                 'tasks_count' => $tasks_count,
