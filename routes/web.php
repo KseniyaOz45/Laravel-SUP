@@ -10,6 +10,8 @@ Route::get('/', [HomeController::class, 'index'])->name('index');
 Route::get('/my-orders', [PersonalMenuController::class, 'ordersMenu'])->name('ordersMenu');
 Route::get('/order/{batch_number}', [OrdersController::class, 'order_details'])->name('order');
 
+Route::resource('orders', OrdersController::class);
+
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
