@@ -2,13 +2,19 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Order;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class PersonalMenuController extends Controller
 {
     //
     public function ordersMenu()
     {
-        return view('orders');
+        $current_user = Auth::user();
+        $user_orders = Order::where('personal_id', $current_user->id)->get();
+        return view('orders', [
+            'user_orders' => $user_orders
+        ]);
     }
 }
