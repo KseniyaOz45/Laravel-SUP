@@ -12,7 +12,7 @@ class PersonalMenuController extends Controller
     public function ordersMenu()
     {
         $current_user = Auth::user();
-        $user_orders = Order::where('personal_id', $current_user->id)->get();
+        $user_orders = Order::where('personal_id', $current_user->id)->paginate(10);
         return view('orders', [
             'user_orders' => $user_orders
         ]);

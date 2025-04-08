@@ -48,15 +48,7 @@
                         </table>
                     </div>
                     <nav class="d-flex d-lg-flex justify-content-center justify-content-lg-center align-items-lg-center">
-                        <ul class="pagination">
-                            <li class="page-item"><a class="page-link" aria-label="Previous" href="#"><span aria-hidden="true">«</span></a></li>
-                            <li class="page-item"><a class="page-link" href="#">1</a></li>
-                            <li class="page-item"><a class="page-link" href="#">2</a></li>
-                            <li class="page-item"><a class="page-link" href="#">3</a></li>
-                            <li class="page-item"><a class="page-link" href="#">4</a></li>
-                            <li class="page-item"><a class="page-link" href="#">5</a></li>
-                            <li class="page-item"><a class="page-link" aria-label="Next" href="#"><span aria-hidden="true">»</span></a></li>
-                        </ul>
+                        {{ $user_orders->links() }}
                     </nav>
                 </div>
                 @include('layouts.sidebar')

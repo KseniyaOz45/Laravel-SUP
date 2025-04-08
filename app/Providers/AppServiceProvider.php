@@ -7,6 +7,7 @@ use App\Models\Task;
 use App\Models\TaskStatus;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\View;
+use Illuminate\Pagination\Paginator;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -23,6 +24,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+        Paginator::useBootstrapFour();
         //
         View::composer('layouts.sidebar', function ($view) {
             $current_user = auth()->user();
