@@ -30,7 +30,13 @@ class AppServiceProvider extends ServiceProvider
         //
         View::composer('layouts.sidebar', function ($view) {
             $current_user = auth()->user();
-            $view->with('current_user', $current_user);
+            $task_complete_status = TaskStatus::where('name', 'Completed')->first()->id;
+            $last_tasks = Task::orderBy('start_at','desc')->where('personal_id', $current_user->id)
+                ->where('status_id', '!=' ,$task_complete_status)->limit(3)->get();
+            $view->with([
+                'current_user' => $current_user,
+                'last_tasks' => $last_tasks,
+            ]);
         });
 
         View::composer('layouts.default-header', function ($view) {

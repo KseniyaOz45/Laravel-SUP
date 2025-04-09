@@ -26,14 +26,16 @@
             </tr>
             </thead>
             <tbody>
-            <tr>
-                <td style="width: 180px;">Cell 1</td>
-                <td>Cell 2</td>
-            </tr>
-            <tr>
-                <td style="width: 180px;">Cell 3</td>
-                <td>Cell 4</td>
-            </tr>
+                @foreach($last_tasks as $task)
+                    <tr>
+                        <td style="width: 180px;">
+                            <a href="{{ route('task', $task->id) }}">
+                                {{ $task->title }}
+                            </a>
+                        </td>
+                        <td>{{ $task->deadline }}</td>
+                    </tr>
+                @endforeach
             </tbody>
         </table>
     </div><!-- Start: Powerful Calendar -->
