@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ClientsController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\InventoriesController;
 use App\Http\Controllers\OrdersController;
@@ -23,6 +24,11 @@ Route::get('/inventories', [InventoriesController::class, 'index'])
     ->middleware(['auth', 'verified'])->name('inventoriesMenu');
 Route::get('/inventory/{batch_number}', [InventoriesController::class, 'inventory_details'])
     ->middleware(['auth', 'verified'])->name('inventory');
+
+Route::get('/clients', [ClientsController::class, 'index'])
+    ->middleware(['auth', 'verified'])->name('clientsMenu');
+Route::get('/client/{name}', [ClientsController::class, 'client_details'])
+    ->middleware(['auth', 'verified'])->name('client');
 
 Route::resource('orders', OrdersController::class)->middleware(['auth', 'verified']);
 Route::resource('tasks', TasksController::class)->middleware(['auth', 'verified']);
