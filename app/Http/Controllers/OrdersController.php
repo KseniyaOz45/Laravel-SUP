@@ -11,6 +11,15 @@ use Illuminate\Support\Facades\Auth;
 
 class OrdersController extends Controller
 {
+    public function index()
+    {
+        $current_user = Auth::user();
+        $user_orders = Order::where('personal_id', $current_user->id)->paginate(10);
+        return view('orders', [
+            'user_orders' => $user_orders
+        ]);
+    }
+
     //
     public function order_details($batch_number){
         $order = Order::where('batch_number', $batch_number)->first();
