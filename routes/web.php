@@ -7,10 +7,12 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [HomeController::class, 'index'])->name('index');
-Route::get('/my-orders', [PersonalMenuController::class, 'ordersMenu'])->name('ordersMenu');
-Route::get('/order/{batch_number}', [OrdersController::class, 'order_details'])->name('order');
+Route::get('/my-orders', [PersonalMenuController::class, 'ordersMenu'])
+    ->middleware(['auth', 'verified'])->name('ordersMenu');
+Route::get('/order/{batch_number}', [OrdersController::class, 'order_details'])
+    ->middleware(['auth', 'verified'])->name('order');
 
-Route::resource('orders', OrdersController::class);
+Route::resource('orders', OrdersController::class)->middleware(['auth', 'verified']);
 
 Route::get('/dashboard', function () {
     return view('dashboard');
