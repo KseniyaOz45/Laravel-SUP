@@ -10,7 +10,7 @@
         <div class="collapse navbar-collapse" id="navcol-1">
             <ul class="navbar-nav me-auto">
                 <li class="nav-item"><a class="nav-link active" href="{{ route('ordersMenu') }}" style="font-family: 'Arsenal SC', sans-serif;">My orders</a></li>
-                <li class="nav-item"><a class="nav-link" href="#" style="font-family: 'Arsenal SC', sans-serif;">My tasks</a></li>
+                <li class="nav-item"><a class="nav-link" href="{{ route('tasksMenu') }}" style="font-family: 'Arsenal SC', sans-serif;">My tasks</a></li>
                 <li class="nav-item"><a class="nav-link" href="#" style="font-family: 'Arsenal SC', sans-serif;">Inventories catalog</a></li>
                 <li class="nav-item"><a class="nav-link" href="#" style="font-family: 'Arsenal SC', sans-serif;">Clients catalog</a></li>
             </ul>
