@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\InventoriesController;
 use App\Http\Controllers\OrdersController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TasksController;
@@ -17,6 +18,11 @@ Route::get('/my-tasks', [TasksController::class, 'index'])
     ->middleware(['auth', 'verified'])->name('tasksMenu');
 Route::get('/tasks/{id}', [TasksController::class, 'task_details'])
     ->middleware(['auth', 'verified'])->name('task');
+
+Route::get('/inventories', [InventoriesController::class, 'index'])
+    ->middleware(['auth', 'verified'])->name('inventoriesMenu');
+Route::get('/inventory/{batch_number}', [InventoriesController::class, 'inventory_details'])
+    ->middleware(['auth', 'verified'])->name('inventory');
 
 Route::resource('orders', OrdersController::class)->middleware(['auth', 'verified']);
 Route::resource('tasks', TasksController::class)->middleware(['auth', 'verified']);
